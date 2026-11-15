@@ -7,6 +7,7 @@
 namespace {
 
 void appendJsonString(String& output, const char* value) {
+  output += '"';
   while (*value != '\0') {
     const uint8_t c = static_cast<uint8_t>(*value++);
     switch (c) {
@@ -43,6 +44,7 @@ void appendJsonString(String& output, const char* value) {
         break;
     }
   }
+  output += '"';
 }
 
 String makeDevicePayload(const TuyaDeviceConfig& device,
