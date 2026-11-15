@@ -1,5 +1,7 @@
 # TuyaStatusPoller
 
+ESP32 poller for the CW24 power meter (Atorch).
+
 Періодично читає статус Tuya-пристроїв у локальній мережі через
 LynkTuyaLocal і виводить по одному JSON-об'єкту на рядок у Serial Monitor.
 Команди керування пристроями не викликаються.
