@@ -54,8 +54,9 @@ the `Authorization: Bearer` header. The current test configuration disables
 TLS certificate verification; use it only temporarily on a trusted network.
 Configure certificate validation before using a real token in production.
 An unsuccessful cloud POST produces a separate
-`"error":"cloud_upload_failed"` JSON line with the HTTP status code (or `0`
-if the cloud settings are missing or the request could not be started).
+`"error":"cloud_upload_failed"` JSON line with the HTTP status code and API
+response body (or a local diagnostic if the cloud settings are missing or
+the request could not be started).
 
 При помилці запиту друкується JSON-рядок з `error`. Опитування пристроїв
 виконується послідовно.

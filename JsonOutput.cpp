@@ -86,14 +86,19 @@ void emitStatusJson(const TuyaDeviceConfig& device, const String& statusJson) {
   const String payload = makeDevicePayload(device, formattedStatus);
   Serial.println(payload);
 
-  const int statusCode = uploadCloudPayload(payload);
+  String responseBody;
+  const int statusCode = uploadCloudPayload(payload, responseBody);
   if (statusCode != 200) {
     Serial.print("{\"device\":");
     String escapedName;
+    String escapedResponse;
     appendJsonString(escapedName, device.name);
+    appendJsonString(escapedResponse, responseBody.c_str());
     Serial.print(escapedName);
     Serial.print(",\"error\":\"cloud_upload_failed\",\"http_code\":");
     Serial.print(statusCode);
+    Serial.print(",\"response\":");
+    Serial.print(escapedResponse);
     Serial.println('}');
   }
 }

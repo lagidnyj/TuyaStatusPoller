@@ -5,10 +5,12 @@
 
 #include "cloud_secrets.h"
 
-int uploadCloudPayload(const String& payload) {
+int uploadCloudPayload(const String& payload, String& responseBody) {
+  responseBody = "";
   if (cloud_secrets::apiUrl[0] == '\0' ||
       cloud_secrets::deviceId[0] == '\0' ||
       cloud_secrets::deviceToken[0] == '\0') {
+    responseBody = "Cloud settings are incomplete";
     return 0;
   }
 
@@ -23,6 +25,7 @@ int uploadCloudPayload(const String& payload) {
   url += "?device=";
   url += cloud_secrets::deviceId;
   if (!http.begin(client, url)) {
+    responseBody = "Could not start HTTP request";
     return 0;
   }
 
@@ -31,6 +34,11 @@ int uploadCloudPayload(const String& payload) {
   authorization += cloud_secrets::deviceToken;
   http.addHeader("Authorization", authorization);
   const int statusCode = http.POST(payload);
+  if (statusCode > 0) {
+    responseBody = http.getString();
+  } else {
+    responseBody = http.errorToString(statusCode);
+  }
   http.end();
   return statusCode;
 }
