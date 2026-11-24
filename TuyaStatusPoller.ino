@@ -18,6 +18,7 @@ void setup() {
   Serial.begin(115200);
 
   WiFi.mode(WIFI_STA);
+  WiFi.setTxPower(WIFI_POWER_11dBm);
   WiFi.setSleep(false);
   WiFi.begin(secrets::wifiSsid, secrets::wifiPassword);
 }
