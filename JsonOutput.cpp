@@ -80,7 +80,7 @@ void emitDeviceError(const TuyaDeviceConfig& device, const char* error) {
 
 void emitStatusJson(const TuyaDeviceConfig& device, const String& statusJson) {
   String formattedStatus;
-  if (!formatTuyaStatus(statusJson, formattedStatus)) {
+  if (!formatTuyaStatus(statusJson, device.formatter, formattedStatus)) {
     emitDeviceError(device, "status_format_failed");
     return;
   }

@@ -23,6 +23,10 @@ bool requestStatus(const TuyaDeviceConfig& config, String& json) {
 void pollAllDevices() {
   for (size_t i = 0; i < kTuyaDeviceCount; ++i) {
     const TuyaDeviceConfig& config = kTuyaDevices[i];
+    if (!config.enabled) {
+      continue;
+    }
+
     String json;
     bool succeeded = false;
 
