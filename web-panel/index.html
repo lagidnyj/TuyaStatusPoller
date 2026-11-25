@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<title>Інвертор — Огляд</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0e1013;color:#e6e8eb;font-family:Inter,Arial,sans-serif}
+.card{background:#161a1f;border:1px solid #232830;border-radius:12px;padding:16px}
+.card h2{font-size:12px;font-weight:500;color:#8a919b;margin:0 0 8px;text-transform:uppercase;letter-spacing:.06em}
+.row{display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:6px 0;border-top:1px solid #232830}
+.row span:first-child{color:#8a919b}
+.muted{color:#8a919b;font-size:13px}
+.ok{color:#3ecf8e}
+.side button{display:flex;align-items:center;gap:12px;min-height:44px;padding:0 12px;background:none;border:0;border-radius:8px;color:#8a919b;font:inherit;font-size:14px;text-align:left}
+.side button.on{background:#232830;color:#e6e8eb}
+svg{display:block;width:100%;height:auto}
+.box{fill:#0e1013;stroke:#232830}
+.n{fill:#8a919b;font-size:14px}
+.v{fill:#e6e8eb;font-size:22px;font-weight:600}
+.s{fill:#e6e8eb;font-size:16px;font-weight:500}
+/* Лінії зв’язків: .on = потужність > 0 (анімація). .rev = зворотний напрямок (АКБ розряд, знак мінус). Без .on лінія неактивна. Дім: завжди .on */
+.ln{fill:none;stroke-width:2;stroke:#2c333c}
+.on{stroke-dasharray:6 8;animation:mv 1s linear infinite}
+.on.rev{animation-direction:reverse}
+.on.c-pv{stroke:#f5b942}.on.c-bat{stroke:#3ecf8e}.on.c-grd{stroke:#4da3ff}.on.c-hse{stroke:#b69cff}
+@keyframes mv{to{stroke-dashoffset:-14}}
+@media (prefers-reduced-motion:reduce){.on{animation:none}}
+.shell{display:flex;min-height:100vh}
+.side{width:220px;flex:none;box-sizing:border-box;background:#161a1f;border-right:1px solid #232830;padding:20px 12px;display:flex;flex-direction:column;gap:8px}
+.brand{font-size:16px;font-weight:600;padding:0 12px 16px}
+.main{flex:1;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px}
+.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+h1{font-size:20px;font-weight:600;margin:0}
+.pill{border:1px solid #232830;border-radius:999px;padding:6px 12px;font-size:13px}
+.flow{width:100%;max-width:640px;margin:0 auto;box-sizing:border-box}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:start}
+.legend{display:flex;gap:16px;font-size:13px;color:#8a919b}
+.pv{color:#f5b942}.hse{color:#b69cff}
+.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+@media (max-width:900px){.cards{grid-template-columns:1fr 1fr}}
+@media (max-width:700px){.side{width:64px;padding:20px 8px}.side span,.brand{display:none}.side button{justify-content:center;padding:0}.main{padding:16px}}
+</style>
+</helmet>
+<div class="shell">
+<nav class="side"><div class="brand">Інвертор</div>
+<button class="on"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect></svg><span>Огляд</span></button>
+<button><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h10M20 6h0M4 12h4M14 12h6M4 18h10M20 18h0"></path><circle cx="16" cy="6" r="2"></circle><circle cx="10" cy="12" r="2"></circle><circle cx="16" cy="18" r="2"></circle></svg><span>Налаштування</span></button>
+</nav>
+<div class="main">
+<div class="top">
+<div><h1>Огляд</h1><div class="muted">Дані: приклад для макета</div></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><span class="pill ok">● Онлайн</span><span class="pill">Оновлено 12:04:31</span></div>
+</div>
+<div class="card flow">
+<svg viewBox="0 0 640 640" role="img" aria-label="Схема потоків: СЕС 1 і СЕС 2, EV зарядка, інвертор, мережа, АКБ, дім">
+<path class="ln on c-pv" d="M166 90H205V310H245"></path>
+<path class="ln on c-pv" d="M166 550H205V330H245"></path>
+<path class="ln c-grd" d="M474 90H435V310H395"></path>
+<path class="ln on c-bat" d="M395 320H474"></path>
+<path class="ln on c-hse" d="M395 330H435V550H474"></path>
+<rect class="box" x="16" y="40" width="150" height="100" rx="10"></rect><text class="n" x="30" y="72">СЕС 1</text><text class="v" x="30" y="110">2,6 kW</text>
+<rect class="box" x="16" y="270" width="150" height="100" rx="10"></rect><text class="n" x="30" y="302">EV</text><text class="s" x="30" y="332">1ф: 2,3 kW</text><text class="s" x="30" y="358">3ф: 0,0 kW</text>
+<rect class="box" x="16" y="500" width="150" height="100" rx="10"></rect><text class="n" x="30" y="532">СЕС 2</text><text class="v" x="30" y="570">2,1 kW</text>
+<rect class="box" x="245" y="270" width="150" height="100" rx="10"></rect><text class="n" x="259" y="302">Інвертор</text><text class="v" x="259" y="340">4,7 kW</text>
+<rect class="box" x="474" y="40" width="150" height="100" rx="10"></rect><text class="n" x="488" y="72">Мережа</text><text class="v" x="488" y="110">0,0 kW</text>
+<rect class="box" x="474" y="270" width="150" height="100" rx="10"></rect><text class="n" x="488" y="302">АКБ</text><text class="v" x="488" y="340">+1,7 kW</text>
+<rect class="box" x="474" y="500" width="150" height="100" rx="10"></rect><text class="n" x="488" y="532">Дім</text><text class="v" x="488" y="570">2,8 kW</text>
+</svg>
+</div>
+<div class="cards">
+<div class="card"><h2>СЕС</h2><div class="row"><span>Напруга 1</span><span>312 V</span></div><div class="row"><span>Струм 1</span><span>8,4 A</span></div><div class="row"><span>Напруга 2</span><span>298 V</span></div><div class="row"><span>Струм 2</span><span>7,1 A</span></div></div>
+<div class="card"><h2>АКБ</h2><div class="row"><span>Напруга</span><span>52,4 V</span></div><div class="row"><span>Струм</span><span>+32,5 A</span></div><div class="row"><span>Заряд</span><span>87 %</span></div><div class="row"><span>Температура</span><span>27 °C</span></div></div>
+<div class="card"><h2>Зовн. мережа</h2><div class="row"><span>Напруга</span><span>231 V</span></div><div class="row"><span>Струм</span><span>0,0 A</span></div><div class="row"><span>За місяць</span><span>214 kWh</span></div><div class="row"><span>Автономність</span><span>62 %</span></div></div>
+<div class="card"><h2>Мережа будинку</h2><div class="row"><span>Напруга</span><span>230 V</span></div><div class="row"><span>Струм</span><span>12,2 A</span></div><div class="row"><span>Навантаження</span><span>42 %</span></div></div>
+</div>
+<!-- ПОКИ ПРИХОВАНО, НА МАЙБУТНЄ: графік потужності за добу
+<div class="card">
+<div class="head"><h2 style="margin:0">Потужність за добу</h2></div>
+<svg viewBox="0 0 900 220" role="img" aria-label="Графік генерації та споживання за добу">
+<path d="M40 10H880M40 95H880M40 180H880" stroke="#232830" fill="none"/>
+<polyline class="ln" stroke="#f5b942" points="40,180 250,180 330,150 400,90 480,40 560,60 640,110 720,160 790,180 880,180"/>
+<polyline class="ln" stroke="#b69cff" points="40,150 150,160 250,140 350,120 450,130 550,100 650,110 750,90 850,120 880,130"/>
+<text class="n" x="40" y="206">00:00</text><text class="n" x="250" y="206">06:00</text><text class="n" x="460" y="206">12:00</text><text class="n" x="670" y="206">18:00</text><text class="n" x="840" y="206">24:00</text>
+</svg>
+<div class="legend"><span class="pv">Генерація СЕС</span><span class="hse">Споживання дому</span></div>
+</div>
+-->
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1080}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
